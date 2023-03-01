@@ -1,10 +1,15 @@
+def grow(pairs):
+    return [age + 1 for age in pairs]
+
+def breed(pairs):
+    children = [0 for age in pairs if age >= 2]
+    return pairs + children
+
+def next_gen(pairs):
+    return breed(grow(pairs))
+
 rabbit_pairs = [0]
 
-for i in range(9):
-    print(f"{len(rabbit_pairs): 3d}", rabbit_pairs)
-    # grow
-    rabbit_pairs = [age + 1 for age in rabbit_pairs]
-
-    # breed
-    baby_pairs = [0 for age in rabbit_pairs if age >= 2]
-    rabbit_pairs = rabbit_pairs + baby_pairs
+for i in range(20):
+    print(len(rabbit_pairs))
+    rabbit_pairs = next_gen(rabbit_pairs)
