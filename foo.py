@@ -1,15 +1,15 @@
-def grow(pairs):
-    return [age + 1 for age in pairs]
+def grow(generation_counts):
+    return [0] + generation_counts
 
-def breed(pairs):
-    children = [0 for age in pairs if age >= 2]
-    return pairs + children
+def breed(generation_counts):
+    baby_count = sum(cnt for cnt in generation_counts[2:])
+    return [baby_count] + generation_counts[1:]
 
-def next_gen(pairs):
-    return breed(grow(pairs))
+def next_gen(generation_counts):
+    return breed(grow(generation_counts))
 
-rabbit_pairs = [0]
+generation_counts = [1]
 
 for i in range(20):
-    print(len(rabbit_pairs))
-    rabbit_pairs = next_gen(rabbit_pairs)
+    print(sum(generation_counts), generation_counts)
+    generation_counts = next_gen(generation_counts)
